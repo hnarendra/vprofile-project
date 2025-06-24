@@ -6,7 +6,7 @@ pipeline{
         
         stage ('checkout scm') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/manoj723529/vprofile-project.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/hnarendra/vprofile-project.git']])
             }
         }
         stage ('maven compile') {
@@ -52,15 +52,15 @@ pipeline{
                 script{
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
                         sh "docker build -t vprofileimg ."
-                        sh "docker tag vprofileimg hnarendra/vip:latest"
-                        sh "docker push hnarendra/vip:latest"
+                        sh "docker tag vprofileimg narendra1090/vip:latest"
+                        sh "docker push narendra1090/vip:latest"
                    }
                 }
             }
         }
                 stage ('Deploy to container'){
             steps{
-                sh 'docker run -d --name dock1 -p 8081:8080 hnarendra/vip:latest'
+                sh 'docker run -d --name dock1 -p 8081:8080 narendra1090/vip:latest'
             }
         }
         }
