@@ -1,7 +1,3 @@
-RUN mvn validate 
-RUN mvn compile
-RUN mvn package
-
 # Use the official Tomcat image
 FROM tomcat:9-jdk17
 
